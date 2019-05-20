@@ -1,0 +1,14 @@
+nodes <- read_excel("~/Programming/R/12 - sankey/2 - Happiness 2016/2016.xlsx",sheet = 'node')
+links <- read_excel("~/Programming/R/12 - sankey/2 - Happiness 2016/2016.xlsx",sheet = 'link')
+links$group = as.factor(links$group)
+
+my_color <- 'd3.scaleOrdinal() .domain(["a","b","c","d","e","f","g","h","i","j"]) .range(["#1e9993",
+"#800000","#FF6600","#008080","#40826D","#7F00FF","#808080","#000080","#808000","#FF007F"])'
+
+
+sankeyNetwork(Links =links,Nodes = nodes,Source = 'source',
+              Target = 'target',Value = 'value',
+              NodeID = 'nodes',
+              iterations = 0,LinkGroup="group", 
+              NodeGroup="group",colourScale = my_color,
+              fontFamily = "HersheySerif",fontSize = 15)
